@@ -19,8 +19,11 @@ $(LIBOBJ): $(LIBSRC) $(LIBHDR)
 
 # Build the main program and link it with the shared library
 $(TARGET): $(MAIN) $(LIBOBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $(MAIN) -L. -lmandelbrot
-
+	$(CXX) $(CXXFLAGS) -o $@ $(MAIN) -L. -lmandelbrot -Wl,-rpath=.
+	
 # Clean rule
 clean:
 	rm -f *.o *.so $(TARGET)
+
+.PHONY: clean all
+
